@@ -1,0 +1,139 @@
+import { Component } from '@angular/core';
+import { Suggestion } from '../../models/suggestion';
+
+@Component({
+  selector: 'app-list-suggestion',
+  templateUrl: './list-suggestion.component.html',
+  styleUrls: ['./list-suggestion.component.css']
+})
+export class ListSuggestionComponent {
+  // Liste des suggestions
+  suggestions: Suggestion[] = [
+    {
+      id: 1,
+      title: 'Organiser une journée team building',
+      description: 'Suggestion pour organiser une journée de team building pour renforcer les liens entre les membres de l\'équipe.',
+      category: 'Événements',
+      date: new Date('2025-01-20'),
+      status: 'acceptee',
+      nbLikes: 10
+    },
+    {
+      id: 2,
+      title: 'Améliorer le système de réservation',
+      description: 'Proposition pour améliorer la gestion des réservations en ligne avec un système de confirmation automatique.',
+      category: 'Technologie',
+      date: new Date('2025-01-15'),
+      status: 'refusee',
+      nbLikes: 0
+    },
+    {
+      id: 3,
+      title: 'Créer un système de récompenses',
+      description: 'Mise en place d\'un programme de récompenses pour motiver les employés et reconnaître leurs efforts.',
+      category: 'Ressources Humaines',
+      date: new Date('2025-01-25'),
+      status: 'refusee',
+      nbLikes: 0
+    },
+    {
+      id: 4,
+      title: 'Moderniser l\'interface utilisateur',
+      description: 'Refonte complète de l\'interface utilisateur pour une meilleure expérience utilisateur.',
+      category: 'Technologie',
+      date: new Date('2025-01-30'),
+      status: 'en_attente',
+      nbLikes: 0
+    },
+  ];
+
+  // Propriétés pour les favoris et la recherche
+  favorites: Suggestion[] = [];
+  searchText: string = '';
+  selectedCategory: string = '';
+  categories: string[] = ['Événements', 'Technologie', 'Ressources Humaines'];
+
+  // ============ MÉTHODES POUR L'INTERFACE ============
+
+  // Compter les suggestions acceptées
+  getAcceptedCount(): number {
+    return this.suggestions.filter(s => s.status === 'acceptee').length;
+  }
+
+  // Compter les suggestions en attente
+  getPendingCount(): number {
+    return this.suggestions.filter(s => s.status === 'en_attente').length;
+  }
+
+  // Obtenir la classe CSS pour le statut
+  getStatusClass(status: string): string {
+    switch(status) {
+      case 'acceptee': return 'status-accepted';
+      case 'refusee': return 'status-rejected';
+      case 'en_attente': return 'status-pending';
+      default: return 'status-pending';
+    }
+  }
+
+  // Obtenir le label en français pour le statut
+  getStatusLabel(status: string): string {
+    switch(status) {
+      case 'acceptee': return 'Acceptée';
+      case 'refusee': return 'Refusée';
+      case 'en_attente': return 'En attente';
+      default: return status;
+    }
+  }
+
+  // ============ MÉTHODES POUR LES BOUTONS ============
+
+  // Méthode pour incrémenter les likes
+  incrementLike(suggestion: Suggestion): void {
+    suggestion.nbLikes++;
+    console.log(`Like ajouté à: ${suggestion.title} - Total: ${suggestion.nbLikes}`);
+  }
+
+  // Méthode pour ajouter aux favoris
+  addToFavorites(suggestion: Suggestion): void {
+    if (!this.isInFavorites(suggestion)) {
+      this.favorites.push({...suggestion});
+      console.log(`Ajouté aux favoris: ${suggestion.title}`);
+      alert(`"${suggestion.title}" a été ajouté aux favoris !`);
+    } else {
+      alert(`"${suggestion.title}" est déjà dans vos favoris !`);
+    }
+  }
+
+  // Vérifier si une suggestion est dans les favoris
+  isInFavorites(suggestion: Suggestion): boolean {
+    return this.favorites.some(fav => fav.id === suggestion.id);
+  }
+
+  // ============ MÉTHODES POUR LA RECHERCHE ============
+
+  // Filtrer les suggestions
+  get filteredSuggestions(): Suggestion[] {
+    return this.suggestions.filter(suggestion => {
+      const matchesText = this.searchText === '' ||
+        suggestion.title.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        suggestion.description.toLowerCase().includes(this.searchText.toLowerCase());
+
+      const matchesCategory = this.selectedCategory === '' ||
+        suggestion.category === this.selectedCategory;
+
+      return matchesText && matchesCategory;
+    });
+  }
+
+  // Effacer la recherche
+  clearSearch(): void {
+    this.searchText = '';
+    this.selectedCategory = '';
+  }
+
+  // Obtenir le nombre de résultats
+  getResultsCount(): number {
+    return this.filteredSuggestions.length;
+  }
+}
+
