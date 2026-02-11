@@ -1,0 +1,86 @@
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(to right, #e3f2fd, #bbdefb);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  margin-bottom: 60px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  color: #0d47a1;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #1565c0;
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0d47a1;
+}
+
+/* FEATURES */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  width: 250px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card h3 {
+  color: #1565c0;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background: #1976d2;
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 180px;
+}
+
+.stat-box h2 {
+  font-size: 28px;
+}

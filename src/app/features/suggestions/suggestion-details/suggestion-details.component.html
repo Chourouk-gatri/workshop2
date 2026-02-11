@@ -1,0 +1,9 @@
+<div *ngIf="suggestion" class="details-card">
+  <h2>{{ suggestion.title }} <span class="emoji">{{ getStatusEmoji(suggestion.status) }}</span></h2>
+  <p><strong>Description :</strong> {{ suggestion.description }}</p>
+  <p><strong>Catégorie :</strong> {{ suggestion.category }}</p>
+  <p><strong>Date :</strong> {{ suggestion.date | date:'shortDate' }}</p>
+  <p><strong>Likes :</strong> {{ suggestion.nbLikes }} ❤️</p>
+
+  <button class="back-btn" (click)="backToList()">⬅️ Back to list</button>
+</div>

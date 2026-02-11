@@ -1,0 +1,54 @@
+/* Card principale */
+.details-card {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* joli dégradé bleu clair */
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 600px;
+  margin: 40px auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  font-family: 'Arial', sans-serif;
+  color: #0d47a1;
+  transition: transform 0.3s;
+}
+
+.details-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Titre + emoji */
+.details-card h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.emoji {
+  font-size: 28px;
+}
+
+/* Paragraphes */
+.details-card p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Bouton back */
+.back-btn {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.back-btn:hover {
+  background-color: #0d47a1;
+  transform: scale(1.05);
+}

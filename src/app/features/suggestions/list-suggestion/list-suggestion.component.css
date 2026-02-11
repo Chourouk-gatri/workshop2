@@ -1,0 +1,43 @@
+/* ListSuggestion & SuggestionDetails commun */
+.suggestion-card, .details-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  margin: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.suggestion-card:hover, .details-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Couleurs selon le statut */
+.suggestion-card.acceptee { background: #dcedc8; }
+.suggestion-card.refusee { background: #ffcdd2; opacity: 0.7; }
+.suggestion-card.en_attente { background: #fff9c4; }
+
+/* Boutons */
+button {
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin: 5px 5px 0 0;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover { opacity: 0.8; }
+
+button:first-of-type { background-color: #ff7043; color: white; } /* Like */
+button:last-of-type { background-color: #42a5f5; color: white; } /* Favoris */
+.back-btn { background-color: #7e57c2; color: white; }
+
+/* Barre de recherche */
+.search-bar input, .search-bar select {
+  padding: 10px; border-radius: 20px; border: 1px solid #90caf9; outline: none;
+}
+
+.search-bar button { background: #42a5f5; color: white; }
