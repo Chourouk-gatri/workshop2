@@ -1,31 +1,64 @@
+<!-- header-actions -->
+<div class="header-actions">
+  <h2>Liste des Suggestions</h2>
+  <button class="btn-add" (click)="goToForm()">➕ Ajouter suggestion</button>
+</div>
+
+<!-- Barre de recherche -->
 <div class="search-bar">
-  <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher par titre">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Rechercher par titre"
+  />
+
   <select [(ngModel)]="categoryFilter">
     <option value="">Toutes les catégories</option>
     <option *ngFor="let cat of uniqueCategories" [value]="cat">{{ cat }}</option>
   </select>
+
   <button (click)="applyFilter()">🔍 Rechercher</button>
 </div>
 
-
-
+<!-- Favoris -->
 <div class="favorites" *ngIf="favorites.length > 0">
   <h3>🌟 Favoris :</h3>
   <ul>
     <li *ngFor="let f of favorites">✨ {{ f.title }}</li>
   </ul>
 </div>
-<div *ngFor="let s of filteredSuggestions" class="suggestion-card" [ngClass]="s.status">
-  <h3>{{ s.title }} <span class="emoji">{{ getStatusEmoji(s.status) }}</span></h3>
+
+<!-- Liste des suggestions -->
+<div
+  *ngFor="let s of filteredSuggestions"
+  class="suggestion-card"
+  [ngClass]="s.status"
+>
+  <h3>
+    {{ s.title }}
+    <span class="emoji">{{ getStatusEmoji(s.status) }}</span>
+  </h3>
+
   <p>{{ s.description }}</p>
   <p><strong>Catégorie :</strong> {{ s.category }}</p>
   <p><strong>Date :</strong> {{ s.date | date:'shortDate' }}</p>
   <p><strong>Likes :</strong> {{ s.nbLikes }} ❤️</p>
 
   <div class="buttons">
-    <button *ngIf="s.status !== 'refusee'" (click)="likeSuggestion(s)">👍 Like</button>
-    <button *ngIf="s.status !== 'refusee'" (click)="addToFavorites(s)">⭐ Ajouter aux favoris</button>
-    <!-- Bouton Details -->
-    <button [routerLink]="[s.id]">🔍 Details</button>
+    <button
+      *ngIf="s.status !== 'refusee'"
+      (click)="likeSuggestion(s)"
+    >
+      👍 Like
+    </button>
+
+    <button
+      *ngIf="s.status !== 'refusee'"
+      (click)="addToFavorites(s)"
+    >
+      ⭐ Ajouter aux favoris
+    </button>
+
+    <button [routerLink]="[s.id]">🔍 Détails</button>
   </div>
 </div>
